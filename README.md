@@ -32,4 +32,4 @@
 - Run TaskChallengeApplication via IDE or terminal.
 
 ### Cleanup Job
-Scheduled Cron task run on 1st day of every month at 12 AM.
+- Scheduled Cron task run on 1st day of every month at 12 AM.

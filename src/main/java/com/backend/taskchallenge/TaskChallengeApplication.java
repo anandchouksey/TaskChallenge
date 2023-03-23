@@ -1,4 +1,4 @@
-package org.example.taskChallenge;
+package com.backend.taskchallenge;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

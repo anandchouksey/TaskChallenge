@@ -45,7 +45,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"name\" : \"t1\",\n    \"x\" : 20,\n    \"y\": 200\n}",
+          "raw": "{\n    \"name\" : \"task1\",\n    \"x\" : 10,\n    \"y\": 100\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -114,7 +114,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"name\" : \"t331\",\n    \"x\" : 50,\n    \"y\": 200\n}",
+          "raw": "{\n    \"name\" : \"task711\",\n    \"x\" : 23,\n    \"y\": 119\n}",
           "options": {
             "raw": {
               "language": "json"

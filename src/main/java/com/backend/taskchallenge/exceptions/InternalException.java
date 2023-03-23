@@ -1,11 +1,11 @@
 package com.backend.taskchallenge.exceptions;
 
 public class InternalException extends RuntimeException{
-    public InternalException(Exception e) {
-        super(e);
+    public InternalException(final Exception exception) {
+        super(exception);
     }
 
-    public InternalException(String message) {
+    public InternalException(final String message) {
         super(message);
     }
 }

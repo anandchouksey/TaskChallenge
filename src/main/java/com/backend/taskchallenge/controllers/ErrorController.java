@@ -30,7 +30,7 @@ public class ErrorController {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public String handleInternalError(Exception e) {
+    public String handleInternalError(final Exception e) {
         logger.error("Unhandled Exception in Controller", e);
         return "Internal error";
     }

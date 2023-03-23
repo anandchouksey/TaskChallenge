@@ -26,29 +26,29 @@ public class FileService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public ResponseEntity<FileSystemResource> getTaskResult(String taskId) {
-        Task task = taskService.getTask(taskId);
-        File inputFile = new File(task.getStoragePath());
+    public ResponseEntity<FileSystemResource> getTaskResult(final String taskId) {
+        final Task task = taskService.getTask(taskId);
+        final File inputFile = new File(task.getStoragePath());
 
         if (!inputFile.exists()) {
             throw new InternalException("File not generated yet");
         }
 
-        HttpHeaders respHeaders = new HttpHeaders();
+        final HttpHeaders respHeaders = new HttpHeaders();
         respHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         respHeaders.setContentDispositionFormData("attachment", "challenge.zip");
         return new ResponseEntity<>(new FileSystemResource(inputFile), respHeaders, HttpStatus.OK);
     }
 
-    public void storeResult(String taskId, URL url) throws IOException {
-        Task task = taskService.getTask(taskId);
-        File outputFile = File.createTempFile(taskId, ".zip");
+    public void storeResult(final String taskId, final URL url) throws IOException {
+        final Task task = taskService.getTask(taskId);
+        final File outputFile = File.createTempFile(taskId, ".zip");
         outputFile.deleteOnExit();
         task.setStoragePath(outputFile.getAbsolutePath());
         taskRepository.save(task);
-        try (InputStream is = url.openStream();
-             OutputStream os = new FileOutputStream(outputFile)) {
-            IOUtils.copy(is, os);
+        try (final InputStream inputStream = url.openStream();
+             final OutputStream outputStream = new FileOutputStream(outputFile)) {
+            IOUtils.copy(inputStream, outputStream);
         }
     }
 

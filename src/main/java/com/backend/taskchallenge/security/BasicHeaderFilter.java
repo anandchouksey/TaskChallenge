@@ -11,26 +11,26 @@ import java.io.IOException;
 
 @Component
 public class BasicHeaderFilter extends OncePerRequestFilter {
-    private final String authHeader;
+    private final String authApiHeader;
     private final String secretApiKey;
 
-    public BasicHeaderFilter(@Value("${task.api.auth.header}") String authHeader,
-                              @Value("${task.api.auth.key}") String secretKey) {
-        this.authHeader = authHeader;
-        this.secretApiKey = secretKey;
+    public BasicHeaderFilter(@Value("${task.api.auth.header}") final String authHeader,
+                              @Value("${task.api.auth.key}") final String secretKey) {
+        authApiHeader = authHeader;
+        secretApiKey = secretKey;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
+                                    final FilterChain filterChain) throws ServletException, IOException {
 
-        if (request.getMethod().equals("OPTIONS")) {
+        if ("OPTIONS".equals(request.getMethod())) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        String val = request.getHeader(authHeader);
-        if (val == null || !val.equals(secretApiKey)) {
+        final String authApiKey = request.getHeader(authApiHeader);
+        if (authApiKey == null || !authApiKey.equals(secretApiKey)) {
             response.setStatus(401);
             response.getWriter().append("Not authorized to execute, Provide right credentials");
             return;

@@ -27,8 +27,8 @@ public class TaskController {
     private final FileService fileService;
 
     @Autowired
-    public TaskController(TaskService taskService,
-                          FileService fileService) {
+    public TaskController(final TaskService taskService,
+                          final FileService fileService) {
         this.taskService = taskService;
         this.fileService = fileService;
     }
@@ -39,52 +39,52 @@ public class TaskController {
     }
 
     @PostMapping("/v1/api/tasks")
-    public Task createTask(@RequestBody @Valid Task Task) {
+    public Task createTask(@RequestBody @Valid final Task Task) {
         return taskService.createTask(Task);
     }
 
     @GetMapping("/v1/api/tasks/{taskId}")
-    public Task getTask(@PathVariable String taskId) {
+    public Task getTask(@PathVariable final String taskId) {
         return taskService.getTask(taskId);
     }
 
     @PutMapping("/v1/api/tasks/{taskId}")
-    public Task updateTask(@PathVariable String taskId,
-                                            @RequestBody @Valid Task Task) {
+    public Task updateTask(@PathVariable final String taskId,
+                                            @RequestBody @Valid final Task Task) {
         return taskService.update(taskId, Task);
     }
 
     @DeleteMapping("/v1/api/tasks/{taskId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteTask(@PathVariable String taskId) {
+    public void deleteTask(@PathVariable final String taskId) {
         taskService.delete(taskId);
     }
 
     @GetMapping("/v1/api/tasks/result/{taskId}")
-    public ResponseEntity<FileSystemResource> getResult(@PathVariable String taskId) {
+    public ResponseEntity<FileSystemResource> getResult(@PathVariable final String taskId) {
         return fileService.getTaskResult(taskId);
     }
 
     @PostMapping("/v1/api/tasks/execute/{taskId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void executeTask(@PathVariable String taskId) {
+    public void executeTask(@PathVariable final String taskId) {
         taskService.executeTask(taskId);
     }
 
     @PostMapping("/v2/api/tasks/execute/{taskId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void triggerExecution(@PathVariable String taskId) {
+    public void triggerExecution(@PathVariable final String taskId) {
         taskService.triggerTaskExecution(taskId);
     }
 
     @PostMapping("/v2/api/tasks/cancel/{taskId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void cancelTaskExecution(@PathVariable String taskId) {
+    public void cancelTaskExecution(@PathVariable final String taskId) {
         taskService.cancelTaskExecution(taskId);
     }
 
     @GetMapping("/v2/api/tasks/status/{taskId}")
-    public Task getExecutionStatus(@PathVariable String taskId) {
+    public Task getExecutionStatus(@PathVariable final String taskId) {
         return taskService.getExecutionStatus(taskId);
     }
 
